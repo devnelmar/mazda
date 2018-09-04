@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+    Propietarios
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Nombre</td>
+                    <td>Sexo</td>
+                    <td>Edad</td>
+                    <td>Identificacion</td>
+                    <td>Email</td>
+                    <td>Telefono</td>
+                    <td>Acciones</td>
+                </tr>
+
+                </thead>
+                <tbody>
+                {% if propietario %}
+                    {% for propietario in propietario %}
+                        <tr>
+                            <td>{{ propietario.id }}</td>
+                            <td>{{ propietario.nombre }}</td>
+                            <td>{{ propietario.sexo }}</td>
+                            <td>{{ propietario.edad }}</td>
+                            <td>{{ propietario.identificacion }}</td>
+                            <td>{{ propietario.email }}</td>
+                            <td>{{ propietario.telefono }}</td>
+                            <td>
+                                <a class="btn btn-primary"
+                                   href="{% url 'propietario:propietario_editar' propietario.id %}">Editar</a>
+                                <a class="btn btn-danger"
+                                   href="{% url 'propietario:propietario_eliminar' propietario.id %}">Eliminar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+
+                {% else %}
+                    <h1>No hay registros de peticiones</h1>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
